@@ -18,7 +18,9 @@ export const putDb = async (content) => {
     const db = await initdb();
     const tx = db.transaction('jate', 'readwrite');
     const store = tx.objectStore('jate');
-    store.put(content);
+    const contentProperties = { ...content };
+    const noIdContent = delete contentProperties.id;
+    await store.add(noIdContent);
     await tx.done;
     console.log('putDb done');
   }
