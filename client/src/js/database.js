@@ -39,6 +39,8 @@ export const getDb = async () => {
     const allContent = await store.getAll();
     await tx.done;
     console.log('getDb done', allContent);
+    return allContent;
+
   } catch (error) {
     console.error('getDb not implemented', err);
   }
