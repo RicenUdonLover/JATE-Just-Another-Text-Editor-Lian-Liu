@@ -14,13 +14,13 @@ const initdb = async () =>
 
 // TODO: Add logic to a method that accepts some content and adds it to the database
 export const putDb = async (content) => {
+
   try {
+    const contentJSON = JSON.stringify(content);
     const db = await initdb();
     const tx = db.transaction('jate', 'readwrite');
     const store = tx.objectStore('jate');
-    const contentProperties = { ...content };
-    const noIdContent = delete contentProperties.id;
-    await store.add(noIdContent);
+    store.put({ content: contentJSON });
     await tx.done;
     console.log('putDb done');
   }
