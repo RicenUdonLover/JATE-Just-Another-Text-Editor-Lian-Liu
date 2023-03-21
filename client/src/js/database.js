@@ -14,15 +14,14 @@ const initdb = async () =>
 
 // TODO: Add logic to a method that accepts some content and adds it to the database
 export const putDb = async (content) => {
-
   try {
-    const contentJSON = JSON.stringify(content);
+    // const contentJSON = JSON.stringify(content);
     const db = await initdb();
     const tx = db.transaction('jate', 'readwrite');
     const store = tx.objectStore('jate');
-    store.put({ content: contentJSON });
-    await tx.done;
-    console.log('putDb done');
+    const request = store.put({ content: content });
+    await request;
+    console.log('putDb done', contentJSON);
   }
   catch (err) {
     console.error('putDb not implemented', err);
@@ -39,6 +38,7 @@ export const getDb = async () => {
     const allContent = await store.getAll();
     await tx.done;
     console.log('getDb done', allContent);
+  
     return allContent;
 
   } catch (error) {
