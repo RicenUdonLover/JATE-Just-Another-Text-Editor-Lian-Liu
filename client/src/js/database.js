@@ -22,7 +22,7 @@ export const putDb = async (content) => {
     const store = tx.objectStore('jate');
     const request = store.put({ content });
     await request;
-    console.log('putDb done', content);
+    console.log('after putDb, content, 25', content);
   }
   catch (err) {
     console.error('putDb not implemented', err);
