@@ -36,10 +36,12 @@ export const getDb = async () => {
     const db = await initdb();
     const tx = db.transaction('jate', 'readonly');
     const store = tx.objectStore('jate');
+    const singleContent = await store.get(1);
+    console.log('getDb, singleContent, 40', singleContent);
     const allContent = await store.getAll();
+    console.log('getDb done, allContent, 42', allContent);
     await tx.done;
-    console.log('getDb done, allContent, 41', allContent);
-    return allContent;
+    return singleContent;
 
   } catch (error) {
     console.error('getDb not implemented', err);
