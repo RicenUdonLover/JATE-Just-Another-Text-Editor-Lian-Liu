@@ -28,7 +28,8 @@ export default class {
       console.log('28, data', data);
       // console.info('Loaded data from IndexedDB, injecting into editor');
       this.editor.setValue(data || localData || header);
-      console.log('31, after this.editor.setValue(data || localData || header);');
+      console.log('31, data', data);
+      console.log('32, localData', localData);
     });
 
     this.editor.on('change', () => {
